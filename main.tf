@@ -122,7 +122,7 @@ resource "aws_eks_addon" "ebs-csi" {
   }
 } 
 
-resource "harness_platform_gitops_cluster" "example" {
+resource "harness_platform_gitops_cluster" "gitopscluster" {
 
 
 depends_on = [
