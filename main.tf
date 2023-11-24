@@ -121,19 +121,36 @@ resource "aws_eks_addon" "ebs-csi" {
     "terraform" = "true"
   }
 } 
-resource "harness_platform_gitops_agent" "gitopsagent" {
 
-  depends_on = [
+resource "harness_platform_gitops_cluster" "example" {
+
+
+depends_on = [
     module.irsa-ebs-csi.ebs-csi
  ]
-  identifier = "gitopsagent"
+  identifier = "argocluster"
   account_id = "Ke-E1FX2SO2ZAL2TXqpLjg"
   project_id = "CANVA"
   org_id     = "default"
-  name       = "gitopsagent"
-  type       = "MANAGED_ARGO_PROVIDER"
-  metadata {
-    namespace         = "default"
-    high_availability = true
+  agent_id   = "gitopseks"
+
+  request {
+    upsert = false
+    cluster {
+      server = "https://kubernetes.default.svc"
+      name   = "name"
+      config {
+        tls_client_config {
+          insecure = true
+        }
+        cluster_connection_type = "IN_CLUSTER"
+      }
+
+    }
+  }
+  lifecycle {
+    ignore_changes = [
+      request.0.upsert, request.0.cluster.0.config.0.bearer_token,
+    ]
   }
 }
