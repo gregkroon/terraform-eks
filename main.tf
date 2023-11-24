@@ -154,7 +154,7 @@ depends_on = [
     ]
   }
 }
-resource "harness_platform_gitops_applications" "example" {
+resource "harness_platform_gitops_applications" "gitopsapplication" {
 
 depends_on = [
     harness_platform_gitops_cluster.gitopscluster
@@ -163,8 +163,8 @@ depends_on = [
     metadata {
       annotations = {}
       labels = {
-        "harness.io/serviceRef" = "service_id"
-        "harness.io/envRef"     = "env_id"
+        "harness.io/serviceRef" = "guestbook"
+        "harness.io/envRef"     = "dev"
       }
       name = "appname123"
     }
@@ -184,20 +184,20 @@ depends_on = [
       }
       source {
         target_revision = "master"
-        repo_url        = "https://github.com/willycoll/argocd-example-apps.git"
+        repo_url        = "https://github.com/argoproj/argocd-example-apps"
         path            = "helm-guestbook"
 
       }
       destination {
-        namespace = "namespace-123"
+        namespace = "default"
         server    = "https://1.3.4.5"
       }
     }
   }
   project_id = "project_id"
-  org_id     = "org_id"
-  account_id = "account_id"
-  identifier = "identifier"
+  org_id     = "default"
+  account_id = "Ke-E1FX2SO2ZAL2TXqpLjg"
+  identifier = "guestbook"
   cluster_id = "cluster_id"
   repo_id    = "repo_id"
   agent_id   = "agent_id"
