@@ -24,7 +24,7 @@ locals {
 }
 
 output "agent_token" {
-  value = harness_platform_gitops_agent.example.agent_token
+  value = harness_platform_gitops_agent.gitopseks.agent_token
 
 }
 
