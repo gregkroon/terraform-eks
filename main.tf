@@ -139,3 +139,85 @@ resource "harness_platform_gitops_agent" "gitopseks" {
     high_availability = true
   }
 }
+
+resource "harness_platform_gitops_cluster" "gitopscluster" {
+
+
+  identifier = "argocluster"
+  account_id = "Ke-E1FX2SO2ZAL2TXqpLjg"
+  project_id = "CANVA"
+  org_id     = "default"
+  agent_id   = "gitopseks"
+
+  request {
+    upsert = false
+    cluster {
+      server = "https://kubernetes.default.svc"
+      name   = "name"
+      config {
+        tls_client_config {
+          insecure = true
+        }
+        cluster_connection_type = "IN_CLUSTER"
+      }
+
+    }
+  }
+  lifecycle {
+    ignore_changes = [
+      request.0.upsert, request.0.cluster.0.config.0.bearer_token,
+    ]
+  }
+}
+
+
+resource "harness_platform_gitops_applications" "gitopsapplication" {
+
+
+  application {
+    metadata {
+      annotations = {}
+      labels = {
+        "harness.io/serviceRef" = "guestbook"
+        "harness.io/envRef"     = "dev"
+      }
+    name = "guestbook-app"  
+    }
+
+    spec {
+      sync_policy {
+        sync_options = [
+          "PrunePropagationPolicy=undefined",
+          "CreateNamespace=false",
+          "Validate=false",
+          "skipSchemaValidations=false",
+          "autoCreateNamespace=false",
+          "pruneLast=false",
+          "applyOutofSyncOnly=false",
+          "Replace=false",
+          "retry=false"
+        ]
+      }
+      source {
+        target_revision = "master"
+        repo_url        = "https://github.com/argoproj/argocd-example-apps"
+        path            = "helm-guestbook"
+
+      }
+      destination {
+        namespace = "default"
+        server    = "https://kubernetes.default.svc"
+      }
+    }
+  }
+  name = "guestbook-app"
+  project_id = "CANVA"
+  org_id     = "default"
+  account_id = "Ke-E1FX2SO2ZAL2TXqpLjg"
+  identifier = "guestbook"
+  cluster_id = "argocluster"
+  repo_id    = "guestbook"
+  agent_id   = "gitopseks"
+}
+
+
