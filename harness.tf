@@ -1,3 +1,11 @@
+provider "harness" {
+  endpoint         = "https://app.harness.io/gateway"
+  account_id       = var.accountid
+  platform_api_key = var.apikey
+}
+
+
+
 resource "harness_platform_gitops_cluster" "gitopscluster" {
 
 
