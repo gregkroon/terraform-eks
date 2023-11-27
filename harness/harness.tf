@@ -1,5 +1,3 @@
-
-
 provider "harness" {
   endpoint         = "https://app.harness.io/gateway"
   account_id       = var.accountid
