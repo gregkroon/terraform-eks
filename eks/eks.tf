@@ -4,6 +4,11 @@ provider "aws" {
   region = var.region
 }
 
+provider "harness" {
+  endpoint         = "https://app.harness.io/gateway"
+  account_id       = var.accountid
+  platform_api_key = var.apikey
+}
 
 # Filter out local zones, which are not currently supported 
 # with managed node groups
