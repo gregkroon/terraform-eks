@@ -23,6 +23,9 @@ terraform {
       version = "~> 2.3.2"
     }
 
+     harness = {
+      source = "harness/harness"
+    }
     
   }
 
