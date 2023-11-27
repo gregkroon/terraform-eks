@@ -126,3 +126,17 @@ resource "aws_eks_addon" "ebs-csi" {
     "terraform" = "true"
   }
 } 
+
+resource "harness_platform_gitops_agent" "gitopseks" {
+  identifier = "gitopseks"
+  account_id = "Ke-E1FX2SO2ZAL2TXqpLjg"
+  project_id = "CANVA"
+  org_id     = "default"
+  name       = "gitopseks"
+  type       = "MANAGED_ARGO_PROVIDER"
+  metadata {
+    namespace         = "default"
+    high_availability = true
+  }
+}
+
