@@ -9,7 +9,7 @@ provider "harness" {
 resource "harness_platform_gitops_cluster" "gitopscluster" {
 
   identifier = "argocluster"
-  account_id = "Ke-E1FX2SO2ZAL2TXqpLjg"
+  account_id = var.accountid 
   project_id = "CANVA"
   org_id     = "default"
   agent_id   = "gitopseks"
@@ -44,10 +44,10 @@ resource "harness_platform_gitops_repository" "gitrepo" {
   ]
 
   identifier = "gitrepo"
-  account_id = "Ke-E1FX2SO2ZAL2TXqpLjg"
   project_id = "CANVA"
   org_id     = "default"
   agent_id   = "gitopseks"
+  account_id = var.accountid
 
   repo {
     repo            = "https://github.com/argoproj/argocd-example-apps"
@@ -109,8 +109,8 @@ resource "harness_platform_gitops_applications" "gitopsapplication" {
   name       = "guestbook"
   project_id = "CANVA"
   org_id     = "default"
-  account_id = "Ke-E1FX2SO2ZAL2TXqpLjg"
   cluster_id  = "argocluster"
   repo_id     = "gitrepo"
   agent_id    = "gitopseks"
+  account_id = var.accountid
 }
