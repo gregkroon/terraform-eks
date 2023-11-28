@@ -7,10 +7,6 @@ provider "harness" {
 
 
 resource "harness_platform_gitops_cluster" "gitopscluster" {
-  
-  depends_on = [
-    harness_platform_gitops_agent.gitopseks
-  ]
 
   identifier = "argocluster"
   account_id = "Ke-E1FX2SO2ZAL2TXqpLjg"
