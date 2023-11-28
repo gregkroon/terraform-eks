@@ -87,7 +87,6 @@ resource "harness_platform_gitops_applications" "gitopsapplication" {
           "Replace=false",
           "retry=false"
         ]
-        automated = {}
 
       }
 
