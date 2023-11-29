@@ -10,6 +10,7 @@ variable "region" {
 variable "clustername" {
   description = "Name of cluster"
   type        = string
+  default     = "kroon-cluster"
 
 }
 
