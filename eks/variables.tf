@@ -7,12 +7,7 @@ variable "region" {
   default     = "ap-southeast-2"
 }
 
-variable "clustername" {
-  description = "Name of cluster"
-  type        = string
-  default     = "kroon-cluster"
 
-}
 
 variable "accountid" {
   description = "Harness accountid"
