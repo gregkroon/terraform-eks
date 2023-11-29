@@ -20,7 +20,7 @@ data "aws_availability_zones" "available" {
 }
 
 locals {
-  cluster_name = var.clustername-${random_string.suffix.result}
+  cluster_name = "var.clustername-${random_string.suffix.result}"
 }
 
 output "agent_token" {
