@@ -10,7 +10,7 @@ provider "harness" {
   platform_api_key = var.apikey
 }
 
-# Filter out local zones, which are not currently supported 
+# Filter out local zones, which are not currently supported - test
 # with managed node groups
 data "aws_availability_zones" "available" {
   filter {
