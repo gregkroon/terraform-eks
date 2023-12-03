@@ -128,11 +128,11 @@ resource "aws_eks_addon" "ebs-csi" {
 } 
 
 resource "harness_platform_gitops_agent" "gitopseks" {
-  identifier = "gitopseks"
-  account_id = "Ke-E1FX2SO2ZAL2TXqpLjg"
+  identifier = "gitopseks${module.eks.cluster_name}"
+  account_id = var.accountid
   project_id = "CANVA"
   org_id     = "default"
-  name       = "gitopseks"
+  name       = "gitopseks${module.eks.cluster_name}"
   type       = "MANAGED_ARGO_PROVIDER"
   metadata {
     namespace         = "default"
