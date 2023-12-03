@@ -8,11 +8,11 @@ provider "harness" {
 
 resource "harness_platform_gitops_cluster" "gitopscluster" {
 
-  identifier = "argocluster-${var.agentid}"
+  identifier = "argocluster"
   account_id = var.accountid 
   project_id = "CANVA"
   org_id     = "default"
-  agent_id   = var.agentid
+  agent_id   = "gitopseks"
 
   request {
     upsert = false
@@ -46,7 +46,7 @@ resource "harness_platform_gitops_repository" "gitrepo" {
   identifier = "gitrepo"
   project_id = "CANVA"
   org_id     = "default"
-  agent_id   = var.agentid
+  agent_id   = "gitopseks"
   account_id = var.accountid
 
   repo {
@@ -112,6 +112,6 @@ resource "harness_platform_gitops_applications" "gitopsapplication" {
   org_id     = "default"
   cluster_id  = "argocluster"
   repo_id     = "gitrepo"
-  agent_id    = var.agentid
+  agent_id    = "gitopseks"
   account_id = var.accountid
 }
