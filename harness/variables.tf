@@ -10,9 +10,5 @@ variable "apikey" {
 
 }
 
-variable "agentid" {
-  description = "Harness Agent name"
-  type        = string
 
-}
 
