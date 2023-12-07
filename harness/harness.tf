@@ -8,18 +8,18 @@ provider "harness" {
 
 resource "harness_platform_gitops_cluster" "gitopscluster" {
 
-  identifier = "argocluster"
+  identifier = var.agentname
   account_id = var.accountid 
   project_id = "CANVA"
   org_id     = "default"
-  agent_id   = "gitopseks"
+  agent_id   = var.agentname
 
   request {
     upsert = false
 
     cluster {
       server = "https://kubernetes.default.svc"
-      name   = "argocluster"
+      name   = var.agentname
 
       config {
         tls_client_config {
@@ -46,7 +46,7 @@ resource "harness_platform_gitops_repository" "gitrepo" {
   identifier = "gitrepo"
   project_id = "CANVA"
   org_id     = "default"
-  agent_id   = "gitopseks"
+  agent_id   = var.agentname
   account_id = var.accountid
 
   repo {
@@ -110,8 +110,8 @@ resource "harness_platform_gitops_applications" "gitopsapplication" {
   name       = "guestbook"
   project_id = "CANVA"
   org_id     = "default"
-  cluster_id  = "argocluster"
+  cluster_id  = var.agentname
   repo_id     = "gitrepo"
-  agent_id    = "gitopseks"
+  agent_id    = var.agentname
   account_id = var.accountid
 }
