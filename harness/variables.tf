@@ -11,4 +11,9 @@ variable "apikey" {
 }
 
 
+variable "agentname" {
+  description = "Harness Agentname"
+  type        = string
+
+}
 
