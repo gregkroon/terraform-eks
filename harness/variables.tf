@@ -1,18 +1,18 @@
-variable "accountid" {
-  description = "Harness accountid"
+variable "ami1" {
+  description = "AMI number 1"
   type        = string
 
 }
 
-variable "apikey" {
-  description = "Harness APIkey"
+variable "ami2" {
+  description = "AMI number 2"
   type        = string
 
 }
 
 
-variable "agentname" {
-  description = "Harness Agentname"
+variable "envvar" {
+  description = "Static Environment variable"
   type        = string
 
 }
